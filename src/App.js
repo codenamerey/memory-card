@@ -1,3 +1,5 @@
+import Header from "./components/Header";
+
 import { useEffect, useState } from "react";
 
 function App() {
@@ -13,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header></Header>
     </div>
   );
 }
