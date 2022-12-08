@@ -9,16 +9,25 @@ import './App.css';
 function App() {
   const characters = ["Harry Potter", 'Albus Dumbledore', 'Bella Lestrange', 'Hermione Granger', 'Ron Weasley', 'Draco Malfoy', 'Voldemort']
   const [randomCharacters, setRandomCharacters] = useState([]);
+  const [selectedCharacters, setSelectedCharacters] = useState([]);
+  const [score, setScore] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
 
   useEffect(()=> {
     document.title = 'Memory Game';
     pickRandomCharacters(characters, 4);
-    console.log(randomCharacters);
   }, []);
 
-  useEffect(() => {
+  useEffect(()=> {
 
-  }, [randomCharacters])
+  }, [selectedCharacters])
+
+  useEffect(() => {
+    if (score == 40) {
+      setIsWinner(true);
+    }
+  }, [score]);
 
 
   function pickRandomCharacters(characters, numberOfCharacters) {
@@ -27,23 +36,43 @@ function App() {
     for(let i=numberOfCharacters; i > 0; i--) {
       let randomIndex = Math.floor(Math.random() * shallowCharacters.length);
       let randomCharacter = shallowCharacters.splice(randomIndex, 1);
-      console.log(randomCharacter);
       functionRandomCharacters.push(randomCharacter[0]);
     }
-    console.log(functionRandomCharacters);
     setRandomCharacters(functionRandomCharacters);
+  }
+
+  function handleCardClick(character) {
+    if(selectedCharacters.some(selectedCharacter => {
+      return selectedCharacter == character;
+    })) {
+      setIsGameOver(true);
+      return;
+    }
+    setSelectedCharacters(oldArray => [...oldArray, character]);
+    setScore(oldScore => oldScore + 10);
   }
 
   return (
     <div className="App">
       <Header></Header>
-      <div className="cardDeck">
-      {
-        randomCharacters.map(randomCharacter => {
-          return <Card character={randomCharacter} id={uniqid()}></Card>
-        })
-      }
-      </div>
+
+        {(!isGameOver && !isWinner) && <div className="scoreBoard">Score: {score}</div>}
+        {(!isGameOver && !isWinner) && <div className="cardDeck">
+        {
+          randomCharacters.map(randomCharacter => {
+            return <Card character={randomCharacter} id={uniqid()} handleCardClick={handleCardClick}></Card>
+          })
+        }
+      
+      </div>}
+
+      {isGameOver && <div className="losingScreen">
+        <h1>You Lost!</h1>
+      </div>  }
+
+      {isWinner && <div className="winningScreen">
+        <h1>You Win!</h1>
+      </div>  }
     </div>
   );
 }

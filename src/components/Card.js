@@ -3,7 +3,7 @@ import './Card.css';
 
 
 function Card(props) {
-    const { character, id } = props;
+    const { handleCardClick, character, id } = props;
     const [gifURL, setGifURL] = useState('');
     useEffect(()=> {
         const URL = `https://api.giphy.com/v1/gifs/translate?api_key=z4L4W8mw0SgWTkLcbb9BIkykMbaZ7hvf&s=${convertToSearchable(character)}`;
@@ -28,8 +28,8 @@ function Card(props) {
     }
 
     return (
-        <div className="card" key={id}>
-            <img src={gifURL} alt="Harry Potter" />
+        <div className="card" key={id} onClick={handleCardClick.bind(null, character)}>
+            <img src={gifURL} alt={character} />
             <div className="description">
                 <p>{character}</p>
             </div>
