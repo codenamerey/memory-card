@@ -20,14 +20,25 @@ function App() {
   }, []);
 
   useEffect(()=> {
-
-  }, [selectedCharacters])
+    
+  }, [selectedCharacters]);
 
   useEffect(() => {
     if (score == 40) {
       setIsWinner(true);
     }
   }, [score]);
+
+  function shuffleRandomCharacters() {
+    let shallowRandomCharacters = randomCharacters.slice();
+    let shuffledRandomCharacters = [];
+    for(let i=randomCharacters.length; i>0; i--) {
+      let randomIndex = Math.floor(Math.random() * shallowRandomCharacters.length);
+      let randomCharacter = shallowRandomCharacters.splice(randomIndex, 1);
+      shuffledRandomCharacters.push(randomCharacter);
+    }
+    setRandomCharacters(shuffledRandomCharacters);
+  }
 
 
   function pickRandomCharacters(characters, numberOfCharacters) {
@@ -50,6 +61,7 @@ function App() {
     }
     setSelectedCharacters(oldArray => [...oldArray, character]);
     setScore(oldScore => oldScore + 10);
+    shuffleRandomCharacters();
   }
 
   return (
