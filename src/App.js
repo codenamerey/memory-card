@@ -1,5 +1,6 @@
 import Header from "./components/Header";
 import Card from "./components/Card";
+import uniqid from 'uniqid';
 
 import { useEffect, useState } from "react";
 
@@ -34,11 +35,13 @@ function App() {
   return (
     <div className="App">
       <Header></Header>
+      <div className="cardDeck">
       {
         randomCharacters.map(randomCharacter => {
-          return <Card character={randomCharacter}></Card>
+          return <Card character={randomCharacter} id={uniqid()}></Card>
         })
       }
+      </div>
     </div>
   );
 }
