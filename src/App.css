@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
+
+body {
+    font-family: 'Kenia';
+}
+
+.cardDeck {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 200%;
+}
+
+@media only screen and (max-width: 750px) {
+    .cardDeck {
+        font-size: 150%;
+    }
+}

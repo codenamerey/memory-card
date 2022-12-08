@@ -3,6 +3,8 @@ import Card from "./components/Card";
 import uniqid from 'uniqid';
 
 import { useEffect, useState } from "react";
+import 'normalize.css';
+import './App.css';
 
 function App() {
   const characters = ["Harry Potter", 'Albus Dumbledore', 'Bella Lestrange', 'Hermione Granger', 'Ron Weasley', 'Draco Malfoy', 'Voldemort']
