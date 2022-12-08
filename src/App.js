@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  useEffect(()=>{
+  const [randomCharacters, setRandomCharacters] = useState([]);
+
+  useEffect(()=> {
     document.title = 'Memory Game';
-  }, [])
+  }, []);
+
+  useEffect(() => {
+
+  }, [randomCharacters])
 
   return (
     <div className="App">
