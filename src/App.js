@@ -64,6 +64,15 @@ function App() {
     shuffleRandomCharacters();
   }
 
+  function restartGame() {
+    setRandomCharacters([]);
+    setSelectedCharacters([]);
+    setIsGameOver(false);
+    setScore(0);
+    setIsWinner(false);
+    pickRandomCharacters(characters, 7);
+  }
+
   return (
     <div className="App">
       <Header></Header>
@@ -80,10 +89,12 @@ function App() {
 
       {isGameOver && <div className="losingScreen">
         <h1>You Lost!</h1>
+        <button onClick={restartGame}>Play Again</button>
       </div>  }
 
       {isWinner && <div className="winningScreen">
         <h1>You Win!</h1>
+        <button onClick={restartGame}>Play Again</button>
       </div>  }
     </div>
   );
