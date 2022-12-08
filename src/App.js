@@ -24,7 +24,7 @@ function App() {
   }, [selectedCharacters]);
 
   useEffect(() => {
-    if (score == 40) {
+    if (score == (randomCharacters.length * 10)) {
       setIsWinner(true);
     }
   }, [score]);
