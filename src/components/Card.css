@@ -1,0 +1,27 @@
+.card {
+    aspect-ratio: 1/1.25;
+    background-color: rgb(87, 13, 13);
+    border-radius: .25rem;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: .5rem;
+}
+
+.card > img {
+    width: 100%;
+}
+
+.card > .description {
+    background-color: rgb(195, 164, 70);
+    color: rgb(87, 13, 13);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    height: 50%;
+    flex-grow: 1;
+}
