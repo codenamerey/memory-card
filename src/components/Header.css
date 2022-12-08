@@ -10,6 +10,22 @@ header {
 header > * {
     margin: 0;
     padding: 0;
+    animation-name: glow;
+    animation-duration: 2500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-end;
+}
+
+@keyframes glow {
+    0% {
+        text-shadow: 1px 1px 5px rgb(2, 82, 2), -1px -1px 5px rgb(2, 82, 2);
+    }
+    50% {
+        text-shadow: 1px 1px 15px rgb(2, 82, 2), -1px -1px 15px rgb(2, 82, 2);
+    }
+    0% {
+        text-shadow: 1px 1px 5px rgb(2, 82, 2), -1px -1px 5px rgb(2, 82, 2);
+    }
 }
 
 header > h1 {
