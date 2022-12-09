@@ -18,6 +18,7 @@ function App() {
   const [randomCharacters, setRandomCharacters] = useState([]);
   const [selectedCharacters, setSelectedCharacters] = useState([]);
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
   const [isGameOver, setIsGameOver] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
 
@@ -33,6 +34,10 @@ function App() {
   useEffect(() => {
     if (score == (randomCharacters.length * 10) && score != 0) {
       setIsWinner(true);
+    }
+
+    if(score > highScore) {
+      setHighScore(score);
     }
   }, [score]);
 
@@ -84,7 +89,7 @@ function App() {
     <div className="App">
       <Header></Header>
 
-        {(!isGameOver && !isWinner) && <div className="scoreBoard">Score: {score}</div>}
+        {(!isGameOver && !isWinner) && <div className="scoreBoard">Score: {score} <br /> High score: {highScore} </div>}
         {(!isGameOver && !isWinner) && <div className="cardDeck">
         {
           randomCharacters.map(randomCharacter => {
