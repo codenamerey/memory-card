@@ -1,6 +1,6 @@
 import Header from "./components/Header";
 import Card from "./components/Card";
-import uniqid from 'uniqid';
+import Footer from "./components/Footer";
 
 import { useEffect, useState } from "react";
 import 'normalize.css';
@@ -108,6 +108,7 @@ function App() {
         <h1>You Win!</h1>
         <button onClick={restartGame}>Play Again</button>
       </div>  }
+      {(isGameOver || isWinner) ? null : <Footer></Footer>}
     </div>
   );
 }

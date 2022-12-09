@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kenia&display=swap');
 
 body {
+    height: 100vh;
     font-family: 'Kenia';
     background: radial-gradient(red, green);
 }
@@ -11,6 +12,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     font-size: 200%;
+    padding: .5rem 0px;
 }
 
 .losingScreen, .winningScreen {
