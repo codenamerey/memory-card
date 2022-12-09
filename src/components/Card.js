@@ -1,6 +1,4 @@
-import { useEffect, useState } from 'react';
 import './Card.css';
-
 
 function Card(props) {
     const { handleCardClick, character, id, imgURL } = props;
