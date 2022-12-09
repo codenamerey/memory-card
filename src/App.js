@@ -5,8 +5,14 @@ import Footer from "./components/Footer";
 import { useEffect, useState } from "react";
 import 'normalize.css';
 import './App.css';
+import DocumentMeta from "react-document-meta";
 
 function App() {
+  const meta = {
+    title: 'Harry Potter Memory Game',
+    description: 'Enhance your memory with moving cards all the way from the wizarding world!'
+  }
+
   const characters = ["Harry Potter", 'Albus Dumbledore', 'Bella Lestrange', 'Hermione Granger', 'Ron Weasley', 'Draco Malfoy', 'Voldemort']
   const charactersGIFUrl = ['https://media1.giphy.com/media/d6Ni9aqSatPfq/giphy.gif?cid=609307fexynwj84gts8k3go8v1wastgo6m7uywrnuyp985gw&rid=giphy.gif&ct=g',
 'https://media0.giphy.com/media/A32EZQEZ2ATEk/giphy.gif?cid=609307fe6ju8sg0vfvsi72parki2jk54uku6w256un2h2gzh&rid=giphy.gif&ct=g',
@@ -23,7 +29,6 @@ function App() {
   const [isWinner, setIsWinner] = useState(false);
 
   useEffect(()=> {
-    document.title = 'Memory Game';
     pickRandomCharacters(characters, 4);
   }, []);
 
@@ -86,30 +91,29 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <Header></Header>
-
-        {(!isGameOver && !isWinner) && <div className="scoreBoard">Score: {score} <br /> High score: {highScore} </div>}
-        {(!isGameOver && !isWinner) && <div className="cardDeck">
-        {
-          randomCharacters.map(randomCharacter => {
-            return <Card imgURL={charactersGIFUrl[characters.indexOf(randomCharacter)]} character={randomCharacter} id={characters.indexOf(randomCharacter)} handleCardClick={handleCardClick}></Card>
-          })
-        }
+    <DocumentMeta {...meta}>
+      <div className="App">
+        <Header></Header>
+          {(!isGameOver && !isWinner) && <div className="scoreBoard">Score: {score} <br /> High score: {highScore} </div>}
+          {(!isGameOver && !isWinner) && <div className="cardDeck">
+          {
+            randomCharacters.map(randomCharacter => {
+              return <Card imgURL={charactersGIFUrl[characters.indexOf(randomCharacter)]} character={randomCharacter} id={characters.indexOf(randomCharacter)} handleCardClick={handleCardClick}></Card>
+            })
+          }
       
-      </div>}
-
-      {isGameOver && <div className="losingScreen">
-        <h1>You Lost!</h1>
-        <button onClick={restartGame}>Play Again</button>
-      </div>  }
-
-      {isWinner && <div className="winningScreen">
-        <h1>You Win!</h1>
-        <button onClick={restartGame}>Play Again</button>
-      </div>  }
-      {(isGameOver || isWinner) ? null : <Footer></Footer>}
-    </div>
+        </div>}
+        {isGameOver && <div className="losingScreen">
+          <h1>You Lost!</h1>
+          <button onClick={restartGame}>Play Again</button>
+        </div>  }
+        {isWinner && <div className="winningScreen">
+          <h1>You Win!</h1>
+          <button onClick={restartGame}>Play Again</button>
+        </div>  }
+        {(isGameOver || isWinner) ? null : <Footer></Footer>}
+      </div>
+    </DocumentMeta>
   );
 }
 
