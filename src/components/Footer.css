@@ -1,4 +1,6 @@
 footer {
+    position: sticky;
+    bottom: 0;
     background: black;
     color: gold;
     padding: .5rem 0px;
