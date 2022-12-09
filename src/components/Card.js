@@ -3,33 +3,11 @@ import './Card.css';
 
 
 function Card(props) {
-    const { handleCardClick, character, id } = props;
-    const [gifURL, setGifURL] = useState('');
-    useEffect(()=> {
-        const URL = `https://api.giphy.com/v1/gifs/translate?api_key=z4L4W8mw0SgWTkLcbb9BIkykMbaZ7hvf&s=${convertToSearchable(character)}`;
-        setGIF(URL);
-    }, []);
-
-    function convertToSearchable(searchTerm) {
-        let searchTermLowercased = searchTerm.toLowerCase();
-        let spaceReplacedWithPlus = searchTermLowercased.replace(' ', '+');
-        return spaceReplacedWithPlus;
-    }
-
-    async function setGIF(url) {
-        try {
-            const response = await fetch(url);
-            const gifData = await response.json();
-            setGifURL(gifData.data.images.original.url); 
-        }
-        catch {
-            setGifURL('There has been a problem loading this image');
-        }
-    }
-
+    const { handleCardClick, character, id, imgURL } = props;
+    console.log(imgURL, character);
     return (
         <div className="card" key={id} onClick={handleCardClick.bind(null, character)}>
-            <img src={gifURL} alt={character} />
+            <img src={imgURL} alt={character} />
             <div className="description">
                 <p>{character}</p>
             </div>

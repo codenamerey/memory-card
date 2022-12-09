@@ -8,6 +8,13 @@ import './App.css';
 
 function App() {
   const characters = ["Harry Potter", 'Albus Dumbledore', 'Bella Lestrange', 'Hermione Granger', 'Ron Weasley', 'Draco Malfoy', 'Voldemort']
+  const charactersGIFUrl = ['https://media1.giphy.com/media/d6Ni9aqSatPfq/giphy.gif?cid=609307fexynwj84gts8k3go8v1wastgo6m7uywrnuyp985gw&rid=giphy.gif&ct=g',
+'https://media0.giphy.com/media/A32EZQEZ2ATEk/giphy.gif?cid=609307fe6ju8sg0vfvsi72parki2jk54uku6w256un2h2gzh&rid=giphy.gif&ct=g',
+'https://media.giphy.com/media/G0NqqnxBXFmWk/giphy.gif',
+'https://media.giphy.com/media/Uw5esGjfVEDpC/giphy.gif',
+'https://media.giphy.com/media/AUarrmo6rpyX6/giphy.gif',
+'https://media.giphy.com/media/xgo9QvVgBy2go/giphy.gif',
+'https://media.giphy.com/media/wLBS2GlPDALS0/giphy.gif'];
   const [randomCharacters, setRandomCharacters] = useState([]);
   const [selectedCharacters, setSelectedCharacters] = useState([]);
   const [score, setScore] = useState(0);
@@ -34,7 +41,7 @@ function App() {
     let shuffledRandomCharacters = [];
     for(let i=randomCharacters.length; i>0; i--) {
       let randomIndex = Math.floor(Math.random() * shallowRandomCharacters.length);
-      let randomCharacter = shallowRandomCharacters.splice(randomIndex, 1);
+      let randomCharacter = (shallowRandomCharacters.splice(randomIndex, 1))[0];
       shuffledRandomCharacters.push(randomCharacter);
     }
     setRandomCharacters(shuffledRandomCharacters);
@@ -81,7 +88,7 @@ function App() {
         {(!isGameOver && !isWinner) && <div className="cardDeck">
         {
           randomCharacters.map(randomCharacter => {
-            return <Card character={randomCharacter} id={uniqid()} handleCardClick={handleCardClick}></Card>
+            return <Card imgURL={charactersGIFUrl[characters.indexOf(randomCharacter)]} character={randomCharacter} id={characters.indexOf(randomCharacter)} handleCardClick={handleCardClick}></Card>
           })
         }
       
